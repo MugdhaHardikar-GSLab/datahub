@@ -51,11 +51,11 @@ task copyAvroSchemas {
   }
 }
 
-task renameNamespace(type: Exec, dependsOn: copyAvroSchemas) {
+task listResources(type: Exec, dependsOn: copyAvroSchemas) {
   commandLine 'ls', './src/main/resources'
 }
 
-compileJava.dependsOn copyAvroSchemas
+compileJava.dependsOn listResources
 
 
 jacocoTestReport {
