@@ -41,8 +41,11 @@ dependencies {
     swaggerCodegen 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.33'
 }
 
+task listSourceResources(type: Exec, dependsOn: ':metadata-events:mxe-schemas:renameNamespace') {
+  commandLine 'ls', '../../../metadata-events/mxe-schemas/src/renamed/avro/com/linkedin/mxe/MetadataChangeProposal.avsc'
+}
 task copyAvroSchemas {
-  dependsOn(':metadata-events:mxe-schemas:renameNamespace')
+  dependsOn(listSourceResources)
   copy {
     from file('../../../metadata-events/mxe-schemas/src/renamed/avro/com/linkedin/mxe/MetadataChangeProposal.avsc')
     into file('./src/main/resources')
