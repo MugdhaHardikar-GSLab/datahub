@@ -54,6 +54,9 @@ task copyAvroSchemas {
   }
 }
 
+task checkPermissions(type: Exec, dependsOn: copyAvroSchemas){
+  commandline 'ls', '-l', './src/main/resources' 
+}
 task listResources(type: Exec, dependsOn: copyAvroSchemas) {
   commandLine 'ls', './src/main/resources'
 }
