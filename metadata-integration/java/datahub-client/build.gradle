@@ -55,7 +55,7 @@ task copyAvroSchemas {
 }
 
 task listResources(type: Exec, dependsOn: copyAvroSchemas) {
-  commandLine 'ls', '-l', './src/main/resources'
+  commandLine 'ls', '-l', './src/main'
 }
 
 compileJava.dependsOn listResources
