@@ -25,9 +25,9 @@ jar -tvf $jarFile |\
       grep -v "module-info.class" |\
       grep -v "client.properties" |\
       grep -v "kafka/" |\
-      grep -v "win/" |\
-      grep -v "include/" |\
-      grep -v "linux/" |\
+      grep -v " win/" |\
+      grep -v " include/" |\
+      grep -v " linux/" |\
       grep -v "darwin/" |\
       grep -v "aix/" |\
       grep -v "MetadataChangeProposal.avsc"
