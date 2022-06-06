@@ -28,7 +28,7 @@ jar -tvf $jarFile |\
       grep -v " win/" |\
       grep -v " include/" |\
       grep -v " linux/" |\
-      grep -v " darvin/" |\
+      grep -v " darwin/" |\
       grep -v " aix/" |\
       grep -v "MetadataChangeProposal.avsc"
 
