@@ -2,6 +2,12 @@
 jarFiles=$(find build/libs -name "datahub-client*.jar" | grep -v sources | grep -v javadoc)
 for jarFile in ${jarFiles}; do
 jar -tvf $jarFile |\
+      grep -v "kafka/" |\
+      grep -v "win/" |\
+      grep -v "include/" |\
+      grep -v "linux/" |\
+      grep -v "darwin/" |\
+      grep -v "aix/" |\
       grep -v "datahub/shaded" |\
       grep -v "META-INF" |\
       grep -v "com/linkedin" |\
@@ -24,12 +30,6 @@ jar -tvf $jarFile |\
       grep -v "license.header" |\
       grep -v "module-info.class" |\
       grep -v "client.properties" |\
-      grep -v "kafka/" |\
-      grep -v " win/" |\
-      grep -v " include/" |\
-      grep -v " linux/" |\
-      grep -v "darwin/" |\
-      grep -v "aix/" |\
       grep -v "MetadataChangeProposal.avsc"
 
 if [ $? -ne 0 ]; then
