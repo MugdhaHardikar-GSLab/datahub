@@ -7,7 +7,7 @@ jar -tvf $jarFile |\
       grep -v "include/" |\
       grep -v "linux/" |\
       grep -v "darwin" |\
-      grep -v " aix" |\
+      grep -v "aix/ppc64" |\
       grep -v "datahub/shaded" |\
       grep -v "META-INF" |\
       grep -v "com/linkedin" |\
