@@ -30,6 +30,21 @@ dependencies {
     swaggerCodegen 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.33'
 }
 
+task copyAvroSchemas {
+  dependsOn(listSourceResources)
+  copy {
+    from file('../../../metadata-events/mxe-schemas/src/renamed/avro/com/linkedin/mxe/MetadataChangeProposal.avsc')
+    into file('./src/main/resources')
+    //if(inputs.sourceFiles.empty) throw new StopExecutionException("No sourcefiles found")
+    //if(inputs.targetFiles.empty) throw new StopExecutionException("No targetfiles found")
+  }
+}
+
+task listResources(type: Exec, dependsOn: copyAvroSchemas) {
+  commandLine 'ls', '-l', './src/main/resources'
+}
+
+compileJava.dependsOn listResources
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
