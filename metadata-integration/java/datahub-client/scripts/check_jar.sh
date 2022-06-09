@@ -30,7 +30,8 @@ jar -tvf $jarFile |\
       grep -v "linux/" |\
       grep -v "darwin" |\
       grep -v "MetadataChangeProposal.avsc" |\
-      grep -v " aix"
+      grep -v "aix/ppc64" |\
+      grep -v " aix/$"
 
 if [ $? -ne 0 ]; then
   echo "✅ No unexpected class paths found in ${jarFile}"
