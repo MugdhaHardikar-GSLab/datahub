@@ -26,6 +26,7 @@ import {
     RecommendationRenderType,
     RelationshipDirection,
     Container,
+    PlatformPrivileges,
 } from './types.generated';
 import { GetTagDocument } from './graphql/tag.generated';
 import { GetMlModelDocument } from './graphql/mlModel.generated';
@@ -207,7 +208,7 @@ export const dataset1 = {
     container: null,
     upstream: null,
     downstream: null,
-    health: null,
+    health: [],
     assertions: null,
     deprecation: null,
     testResults: null,
@@ -288,7 +289,7 @@ export const dataset2 = {
     container: null,
     upstream: null,
     downstream: null,
-    health: null,
+    health: [],
     assertions: null,
     status: null,
     deprecation: null,
@@ -498,12 +499,13 @@ export const dataset3 = {
     container: null,
     lineage: null,
     relationships: null,
-    health: null,
+    health: [],
     assertions: null,
     status: null,
     readRuns: null,
     writeRuns: null,
     testResults: null,
+    siblings: null,
 } as Dataset;
 
 export const dataset4 = {
@@ -1116,7 +1118,15 @@ export const dataFlow1 = {
         ],
     },
     platform: {
-        ...dataPlatform,
+        urn: 'urn:li:dataPlatform:airflow',
+        name: 'Airflow',
+        type: EntityType.DataPlatform,
+        properties: {
+            displayName: 'Airflow',
+            type: PlatformType.FileSystem,
+            datasetNameDelimiter: '.',
+            logoUrl: '',
+        },
     },
     domain: null,
     deprecation: null,
@@ -1752,7 +1762,7 @@ export const mocks = [
             variables: {
                 input: {
                     query: 't',
-                    limit: 30,
+                    limit: 10,
                 },
             },
         },
@@ -3082,6 +3092,17 @@ export const mocks = [
                         viewAnalytics: true,
                         managePolicies: true,
                         manageIdentities: true,
+                        manageDomains: true,
+                        manageTags: true,
+                        createDomains: true,
+                        createTags: true,
+                        manageUserCredentials: true,
+                        manageGlossaries: true,
+                        manageTests: true,
+                        manageTokens: true,
+                        manageSecrets: true,
+                        manageIngestion: true,
+                        generatePersonalAccessTokens: true,
                     },
                 },
             },
@@ -3222,7 +3243,7 @@ export const mocks = [
                     types: [],
                     query: '*',
                     start: 0,
-                    count: 20,
+                    count: 6,
                     filters: [],
                 },
             },
@@ -3288,3 +3309,20 @@ export const mocks = [
         },
     },
 ];
+
+export const platformPrivileges: PlatformPrivileges = {
+    viewAnalytics: true,
+    managePolicies: true,
+    manageIdentities: true,
+    generatePersonalAccessTokens: true,
+    manageDomains: true,
+    manageIngestion: true,
+    manageSecrets: true,
+    manageTokens: true,
+    manageTests: true,
+    manageGlossaries: true,
+    manageUserCredentials: true,
+    manageTags: true,
+    createTags: true,
+    createDomains: true,
+};
