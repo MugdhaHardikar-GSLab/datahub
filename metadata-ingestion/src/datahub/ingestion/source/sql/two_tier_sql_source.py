@@ -39,9 +39,9 @@ class TwoTierSQLAlchemyConfig(BasicSQLAlchemyConfig):
     ) -> Dict[str, Any]:
         schema_pattern = values.get("schema_pattern")
         database_pattern = values.get("database_pattern")
-        if schema_pattern is not None and database_pattern is None:
+        if schema_pattern is not None:
             values["database_pattern"] = schema_pattern
-            values["profile_pattern"] = None
+            values["schema_pattern"] = None
         return values
 
     def get_sql_alchemy_url(
