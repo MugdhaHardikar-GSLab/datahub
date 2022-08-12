@@ -16,7 +16,10 @@ from datahub.ingestion.source.sql.sql_common import (
     make_sqlalchemy_type,
     register_custom_type,
 )
-from datahub.ingestion.source.sql.two_tier_sql_source import TwoTierSQLAlchemySource, TwoTierSQLAlchemyConfig
+from datahub.ingestion.source.sql.two_tier_sql_source import (
+    TwoTierSQLAlchemyConfig,
+    TwoTierSQLAlchemySource,
+)
 
 GEOMETRY = make_sqlalchemy_type("GEOMETRY")
 POINT = make_sqlalchemy_type("POINT")

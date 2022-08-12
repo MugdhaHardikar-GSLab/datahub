@@ -1,7 +1,5 @@
-import datetime
 import typing
-from abc import ABC
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict
 
 import pydantic
 from pydantic.fields import Field
@@ -11,7 +9,6 @@ from sqlalchemy.engine.reflection import Inspector
 from datahub.configuration.common import AllowDenyPattern
 from datahub.emitter.mcp_builder import PlatformKey
 from datahub.ingestion.api.workunit import MetadataWorkUnit
-from datahub.ingestion.source.sql.mssql import SQLServerConfig
 from datahub.ingestion.source.sql.sql_common import (
     BasicSQLAlchemyConfig,
     SQLAlchemySource,
@@ -38,7 +35,6 @@ class TwoTierSQLAlchemyConfig(BasicSQLAlchemyConfig):
         cls, values: Dict[str, Any]
     ) -> Dict[str, Any]:
         schema_pattern = values.get("schema_pattern")
-        database_pattern = values.get("database_pattern")
         if schema_pattern is not None:
             values["database_pattern"] = schema_pattern
             values["schema_pattern"] = None
@@ -60,7 +56,6 @@ class TwoTierSQLAlchemyConfig(BasicSQLAlchemyConfig):
 
 
 class TwoTierSQLAlchemySource(SQLAlchemySource):
-
     def __init__(self, config, ctx, platform):
         super().__init__(config, ctx, platform)
         self.current_database = None
