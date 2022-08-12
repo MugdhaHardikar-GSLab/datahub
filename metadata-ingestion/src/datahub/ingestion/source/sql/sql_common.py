@@ -1018,7 +1018,7 @@ class SQLAlchemySource(StatefulIngestionSourceBase):
 
     def get_table_properties(
         self, inspector: Inspector, schema: str, table: str
-    ) -> Tuple[Optional[str], Optional[Dict[str, str]], Optional[str]]:
+    ) -> Tuple[Optional[str], Dict[str, str], Optional[str]]:
         try:
             location: Optional[str] = None
             # SQLALchemy stubs are incomplete and missing this method.
