@@ -37,7 +37,6 @@ class TwoTierSQLAlchemyConfig(BasicSQLAlchemyConfig):
         schema_pattern = values.get("schema_pattern")
         if schema_pattern is not None:
             values["database_pattern"] = schema_pattern
-            values["schema_pattern"] = None
         return values
 
     def get_sql_alchemy_url(
